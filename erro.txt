@@ -27,4 +27,10 @@ En línea: 29 Carácter: 1
    mNotFoundException
     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
 
-PS C:\Users\Administrator\AppData\Local\Temp\git\git-2.39.2>
+pruebv
+scvgfdsvs
+dfvsdf
+v
+vdfbd
+bvb
+vc
