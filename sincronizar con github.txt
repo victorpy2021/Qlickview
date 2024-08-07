@@ -1,0 +1,48 @@
+# Configuración de variables
+$gitHubRepoUrl = "https://github.com/usuario/nombre-repositorio.git" # Cambia esto por la URL de tu repositorio
+$repoPath = "C:\Ruta\A\Tu\Repositorio" # Cambia esto a la ruta donde deseas clonar el repositorio
+$sourcePath = "C:\Ruta\A\Tus\Archivos\QlikView\*" # Cambia esto a la ruta de tus archivos de QlikView
+
+# 1. Instalar Git si no está instalado
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "Git no está instalado. Instalando Git..."
+    $gitInstallerUrl = "https://github.com/git/git/archive/refs/tags/v2.39.2.zip" # Cambia a la última versión
+    $gitInstallerPath = "$env:TEMP\git.zip"
+    
+    Invoke-WebRequest -Uri $gitInstallerUrl -OutFile $gitInstallerPath
+    Expand-Archive -Path $gitInstallerPath -DestinationPath "$env:TEMP\git"
+    
+    cd "$env:TEMP\git\git-2.39.2" # Cambia esto a la ruta correcta de la versión descomprimida
+    .\configure
+    make
+    make install
+    Write-Host "Git instalado correctamente."
+}
+
+# 2. Clonar el repositorio de GitHub
+if (-not (Test-Path $repoPath)) {
+    Write-Host "Clonando el repositorio de GitHub..."
+    git clone $gitHubRepoUrl $repoPath
+} else {
+    Write-Host "El repositorio ya existe en la ruta especificada."
+}
+
+# 3. Copiar archivos desde la carpeta de QlikView al repositorio
+Write-Host "Copiando archivos de QlikView al repositorio..."
+Copy-Item -Path $sourcePath -Destination $repoPath -Recurse -Force
+
+# 4. Cambiar al directorio del repositorio
+Set-Location -Path $repoPath
+
+# 5. Agregar cambios a Git
+git add .
+
+# 6. Realizar un commit
+$commitMessage = "Actualización automática desde QlikView - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+git commit -m $commitMessage
+
+# 7. Empujar cambios al repositorio remoto
+git push origin main # Cambia "main" si tu rama principal tiene otro nombre
+
+# 8. Confirmación de finalización
+Write-Host "Sincronización completa. Los cambios se han subido a GitHub."

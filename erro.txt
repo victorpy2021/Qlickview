@@ -1,0 +1,30 @@
+﻿Descargando Git...
+Invoke-WebRequest : Anulada la solicitud: La conexión ha terminado de forma inesperada.
+En línea: 15 Carácter: 1
++ Invoke-WebRequest -Uri $gitInstallerUrl -OutFile $installerPath
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebReque
+   st], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestC
+   ommand
+
+Instalando Git...
+Start-Process : Este comando no se puede ejecutar debido al error: El sistema no puede encontrar el archivo
+especificado.
+En línea: 19 Carácter: 1
++ Start-Process -FilePath $installerPath -ArgumentList '/VERYSILENT', ' ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+Hubo un problema al instalar Git.
+Remove-Item : No se encuentra la ruta de acceso 'C:\Users\ADMINI~2\AppData\Local\Temp\GitInstaller.exe'
+porque no existe.
+En línea: 29 Carácter: 1
++ Remove-Item $installerPath -Force
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\ADMINI...itInstaller.exe:String) [Remove-Item], Ite
+   mNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
+
+PS C:\Users\Administrator\AppData\Local\Temp\git\git-2.39.2>
