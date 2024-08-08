@@ -1,22 +1,20 @@
-name: Deploy to AWS
+name: Python application
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
-    - name: Deploy to S3
+        python-version: '3.9'
+    - name: Install dependencies
       run: |
-        aws s3 sync . s3://my-bucket
+        pip install -r requirements.txt
+    - name: Run tests
+      run: |
+        python -m unittest discover
