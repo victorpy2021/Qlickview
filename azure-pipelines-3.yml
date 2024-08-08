@@ -1,0 +1,10 @@
+# Especificar el pool de agentes donde se ejecutará el trabajo
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Definir los trabajos que se ejecutarán en la canalización
+jobs:
+- job: myJob
+  displayName: 'Build y despliegue'
+  steps:
+  - script: echo 'todo funciona correctamente aguardo'
