@@ -1,0 +1,34 @@
+name: Transfer Files
+
+on:
+  push:
+    branches:
+      - main  # Cambia a la rama de tu elección
+
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install paramiko
+
+    - name: Run SFTP transfer script
+      run: |
+        python copy_files.py
+      env:
+        SFTP_HOST: ${{ secrets.SFTP_HOST }}
+        SFTP_PORT: ${{ secrets.SFTP_PORT }}
+        SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+        SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+        LOCAL_PATH: ${{ secrets.LOCAL_PATH }}
