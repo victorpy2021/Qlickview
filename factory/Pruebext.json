@@ -1,0 +1,9 @@
+{
+	"name": "Pruebext",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "218e2580-69fd-4ac0-8c94-2ff9e23ce5ec",
+		"tenantId": "b3c3e59b-ab66-429d-ab00-536188f912a0"
+	}
+}
