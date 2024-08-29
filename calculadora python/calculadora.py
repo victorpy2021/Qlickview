@@ -16,5 +16,5 @@ elif operacion == 'restar':
     num2 = float(input("Ingresa el segundo número: "))
     resultado = restar(num1, num2)
     print("El resultado de la resta es:", resultado)
-else:
+
     print("Operación no válida. Por favor, selecciona 'sumar' o 'resstar'.")
