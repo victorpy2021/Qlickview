@@ -8,7 +8,7 @@ GSAD
 GV
 AWERSBV 
 AE
-DGV
+
 BV
 GSA
 VS
@@ -29,3 +29,4 @@ MIERCOLES
 JUEVES
 
 VIERNES
+asdasdsa
